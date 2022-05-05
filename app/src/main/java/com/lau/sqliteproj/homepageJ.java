@@ -6,15 +6,17 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
 
 public class homepageJ extends AppCompatActivity {
     SQLiteDatabase sqliteDB;
+    Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
-        Intent i = new Intent(this, secondPageJ.class);
+        i = new Intent(this, secondPageJ.class);
         //SQL commands to initialize the DB and insert data
         try {
             sqliteDB = this.openOrCreateDatabase("fExamsdb", MODE_PRIVATE, null);
@@ -40,6 +42,28 @@ public class homepageJ extends AppCompatActivity {
             e.printStackTrace();
         }
         return url;
+    }
+
+    //methods to send urls to the webpage according to the selected course
+    public void androidWeb(View view) {
+        String url = getWebpage("Android Development");
+        i.putExtra("WebURL", url);
+        startActivity(i);
+    }
+    public void discreteWeb(View view) {
+        String url = getWebpage("Discrete Math");
+        i.putExtra("WebURL", url);
+        startActivity(i);
+    }
+    public void osWeb(View view) {
+        String url = getWebpage("Operating System");
+        i.putExtra("WebURL", url);
+        startActivity(i);
+    }
+    public void seWeb(View view) {
+        String url = getWebpage("Software Engineerinh=g");
+        i.putExtra("WebURL", url);
+        startActivity(i);
     }
 
 }
