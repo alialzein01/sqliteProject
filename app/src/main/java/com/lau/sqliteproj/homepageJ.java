@@ -3,6 +3,7 @@ package com.lau.sqliteproj;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
@@ -14,6 +15,7 @@ public class homepageJ extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
         Intent i = new Intent(this, secondPageJ.class);
+        //SQL commands to initialize the DB and insert data
         try {
             sqliteDB = this.openOrCreateDatabase("fExamsdb", MODE_PRIVATE, null);
             sqliteDB.execSQL("CREATE Table IF NOT EXISTS exams(subject VARCHAR, webpage VARCHAR)");
@@ -25,4 +27,19 @@ public class homepageJ extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    //method to get the webpage url from the DB
+    public String getWebpage(String subject) {
+        String url = "";
+        try {
+            Cursor cursor = sqliteDB.rawQuery("Select webpage from exams where subject = \"" + subject + "\"", null);
+            int n = cursor.getColumnIndex("webpage");
+            cursor.moveToFirst();
+            url = cursor.getString(n);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return url;
+    }
+
 }
