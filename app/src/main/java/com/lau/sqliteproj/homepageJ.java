@@ -20,11 +20,11 @@ public class homepageJ extends AppCompatActivity {
         //SQL commands to initialize the DB and insert data
         try {
             sqliteDB = this.openOrCreateDatabase("fExamsdb", MODE_PRIVATE, null);
-            sqliteDB.execSQL("CREATE Table IF NOT EXISTS exams(subject VARCHAR, webpage VARCHAR)");
+            /*sqliteDB.execSQL("CREATE Table IF NOT EXISTS exams(subject VARCHAR, webpage VARCHAR)");
             sqliteDB.execSQL("INSERT INTO exams(subject,webpage) VALUES ('Android Development','https://developer.android.com/docs')");
             sqliteDB.execSQL("INSERT INTO exams(subject,webpage) VALUES ('Discrete Math','https://www.coursera.org/courses?query=discrete%20mathematics')");
             sqliteDB.execSQL("INSERT INTO exams(subject,webpage) VALUES ('Operating System','https://maker.pro/linux/tutorial/basic-linux-commands-for-beginners')");
-            sqliteDB.execSQL("INSERT INTO exams(subject,webpage) VALUES ('Software Engineering','https://www.edx.org/learn/software-engineering')");
+            sqliteDB.execSQL("INSERT INTO exams(subject,webpage) VALUES ('Software Engineering','https://www.edx.org/learn/software-engineering')");*/
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -61,7 +61,7 @@ public class homepageJ extends AppCompatActivity {
         startActivity(i);
     }
     public void seWeb(View view) {
-        String url = getWebpage("Software Engineerinh=g");
+        String url = getWebpage("Software Engineering");
         i.putExtra("WebURL", url);
         startActivity(i);
     }
